@@ -7,7 +7,8 @@
     "distDir": "../build",
     "devPath": "http://localhost:3000",
     "beforeDevCommand": "yarn start",
-    "beforeBuildCommand": "yarn build"
+    "beforeBuildCommand": "yarn build",
+    "withGlobalTauri": true
   },
   "tauri": {
     "bundle": {
@@ -56,6 +57,8 @@
         "title": "Tauri App",
         "width": 800,
         "height": 600,
+        "decorations": false,
+        "transparent": true,
         "resizable": true,
         "fullscreen": false
       }
