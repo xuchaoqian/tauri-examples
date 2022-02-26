@@ -56,7 +56,6 @@ fn do_create_window<R: Runtime>(app_handle: AppHandle<R>, label: String, n: u32)
           .position((n as f64) * 20.0, (n as f64) * 20.0)
           .min_inner_size(600.0, 400.0)
           .inner_size(600.0, 400.0)
-          .transparent(false)
           .decorations(true)
           .visible(false);
         (builder, webview_attributes)
