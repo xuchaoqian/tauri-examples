@@ -14,9 +14,9 @@ pub async fn create_multi_windows<R: Runtime>(app_handle: AppHandle<R>) -> Resul
   for n in 1..3 {
     let app_handle = app_handle.clone();
     join_handles.push(tauri::async_runtime::spawn(async move {
-      let label = format!("window-{:?}", Utc::now().timestamp_millis());
+      let label = format!("window-{:?}", Utc::now().timestamp_millis() + n);
       println!("creating window: {:?}", label);
-      do_create_window(app_handle, label.clone(), n);
+      do_create_window(app_handle, label.clone(), n as u32);
       WINDOW_LABELS.write().unwrap().push(label.clone());
       println!("created window: {:?}", label);
     }));
