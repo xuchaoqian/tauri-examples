@@ -1,0 +1,21 @@
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #ececec;
+
+  .logo-img {
+    margin-top: 35px;
+    width: 66px;
+    height: 66px;
+  }
+
+  .loading-img {
+    margin-top: -20px;
+    width: 66px;
+    height: 66px;
+  }
+}
