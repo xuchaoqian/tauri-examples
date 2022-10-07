@@ -1,0 +1,66 @@
+{
+  "package": {
+    "productName": "global-shortcut",
+    "version": "0.1.0"
+  },
+  "build": {
+    "distDir": "../build",
+    "devPath": "http://localhost:3000",
+    "beforeDevCommand": "npm run start",
+    "beforeBuildCommand": "npm run build-web-dev",
+    "withGlobalTauri": true
+  },
+  "tauri": {
+    "bundle": {
+      "active": true,
+      "targets": ["msi", "appimage", "dmg", "app"],
+      "identifier": "tauri-example.global-shortcut",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "resources": [],
+      "externalBin": [],
+      "copyright": "",
+      "category": "Finance",
+      "shortDescription": "",
+      "longDescription": "",
+      "deb": {
+        "depends": []
+      },
+      "macOS": {
+        "frameworks": [],
+        "minimumSystemVersion": "10.15",
+        "exceptionDomain": "",
+        "signingIdentity": null,
+        "entitlements": null
+      },
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": "",
+        "wix": {
+          "language": "zh-CN",
+          "bannerPath": "icons/header.png",
+          "dialogImagePath": "icons/background.png"
+        }
+      }
+    },
+    "allowlist": {
+      "fs": { "all": true },
+      "dialog": { "all": true },
+      "window": { "all": true },
+      "shell": { "open": true },
+      "path": { "all": true },
+      "process": { "exit": true, "relaunch": true }
+    },
+    "macOSPrivateApi": true,
+    "windows": [],
+    "security": {
+      "csp": null
+    }
+  }
+}
