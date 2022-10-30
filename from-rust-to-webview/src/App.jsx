@@ -12,8 +12,9 @@ async function evalData() {
     await invoke("plugin:xplugin|eval_data", {invokeId});
     delete window.results[invokeId];
   }
+  const end = new Date();
   // console.log("result: ", window.results[invokeId]); 
-  console.log("spent time in eval: ",  new Date() - start);
+  console.log(`spent time: ${end - start} ms`);
 }
 
 function App() {
