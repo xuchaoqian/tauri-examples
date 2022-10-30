@@ -1,4 +1,3 @@
-use chrono::Utc;
 use futures::future::join_all;
 use once_cell::sync::Lazy;
 use std::sync::RwLock;
@@ -11,10 +10,10 @@ static WINDOW_LABELS: Lazy<RwLock<Vec<String>>> = Lazy::new(|| RwLock::new(Vec::
 #[tauri::command]
 pub async fn create_multi_windows<R: Runtime>(app_handle: AppHandle<R>) -> Result<(), String> {
   let mut join_handles: Vec<JoinHandle<()>> = vec![];
-  for n in 1..3 {
+  for n in 1..10 {
     let app_handle = app_handle.clone();
     join_handles.push(tauri::async_runtime::spawn(async move {
-      let label = format!("window-{:?}", Utc::now().timestamp_millis() + n);
+      let label = format!("window-{:?}", n);
       println!("creating window: {:?}", label);
       do_create_window(app_handle, label.clone(), n as u32);
       WINDOW_LABELS.write().unwrap().push(label.clone());
@@ -46,20 +45,17 @@ pub async fn show_multi_windows<R: Runtime>(app_handle: AppHandle<R>) -> Result<
 }
 
 fn do_create_window<R: Runtime>(app_handle: AppHandle<R>, label: String, n: u32) {
-  app_handle
-    .create_window(
-      label,
-      WindowUrl::App(PathBuf::from("index.html")),
-      |window_builder, webview_attributes| {
-        let builder = window_builder
-          .title("test".to_owned())
-          .position((n as f64) * 100.0, (n as f64) * 100.0)
-          .min_inner_size(600.0, 400.0)
-          .inner_size(600.0, 400.0)
-          .decorations(true)
-          .visible(false);
-        (builder, webview_attributes)
-      },
-    )
-    .unwrap();
+  WindowBuilder::new(
+    &app_handle,
+    label.clone(),
+    WindowUrl::App(PathBuf::from("index.html")),
+  )
+  .title("test".to_owned())
+  .position((n as f64) * 100.0, (n as f64) * 100.0)
+  .min_inner_size(600.0, 400.0)
+  .inner_size(600.0, 400.0)
+  .decorations(true)
+  .visible(false)
+  .build()
+  .unwrap();
 }
