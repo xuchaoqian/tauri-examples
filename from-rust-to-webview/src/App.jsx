@@ -7,7 +7,7 @@ let INVOKE_ID = 0;
 
 async function evalData() {
   const start = new Date();
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 1; i++) {
     const invokeId =  INVOKE_ID++ ;
     await invoke("plugin:xplugin|eval_data", {invokeId});
     delete window.results[invokeId];

@@ -19,7 +19,7 @@ pub struct Row {
 
 fn build_rows() -> Vec<Row> {
     let mut rows: Vec<Row> = vec![];
-    for i in 0..2000 {
+    for i in 0..200000 {
         rows.push(Row {
             v0: i,
             v1: i + 1,
